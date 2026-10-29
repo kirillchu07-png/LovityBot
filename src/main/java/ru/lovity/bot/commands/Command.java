@@ -1,5 +1,5 @@
-package Commands;
-import model.ConsoleWriter;
+package ru.lovity.bot.commands;
+import ru.lovity.bot.model.ConsoleWriter;
 
 public interface Command {
     String getName();

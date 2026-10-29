@@ -1,17 +1,16 @@
 
-package Commands;
+package ru.lovity.bot.commands;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 
-import model.ConsoleWriter;
-import model.Match;
-import model.ProfileFinder;
-import model.ViewSession;
-import resources.Paths;
+import ru.lovity.bot.core.Paths;
+import ru.lovity.bot.model.ConsoleWriter;
+import ru.lovity.bot.model.Match;
+import ru.lovity.bot.model.ViewSession;
+import ru.lovity.bot.service.ProfileFinder;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;

@@ -1,6 +1,6 @@
-package telegram;
-import model.ConsoleReader;
-import model.IncomingMessage;
+package ru.lovity.bot.telegram;
+import ru.lovity.bot.model.ConsoleReader;
+import ru.lovity.bot.model.IncomingMessage;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;

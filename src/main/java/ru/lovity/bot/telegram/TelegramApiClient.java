@@ -1,4 +1,4 @@
-package telegram;
+package ru.lovity.bot.telegram;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;

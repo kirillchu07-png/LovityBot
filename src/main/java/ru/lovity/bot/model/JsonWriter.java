@@ -1,4 +1,4 @@
-package model;
+package ru.lovity.bot.model;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;

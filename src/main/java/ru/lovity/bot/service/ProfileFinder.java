@@ -1,4 +1,4 @@
-package model;
+package ru.lovity.bot.service;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;

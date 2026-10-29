@@ -1,4 +1,4 @@
-package model;
+package ru.lovity.bot.model;
 
 import java.util.Arrays;
 

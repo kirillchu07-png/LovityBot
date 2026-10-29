@@ -1,8 +1,7 @@
-package Commands;
-import model.*;
-import resources.Paths;
+package ru.lovity.bot.commands;
+import ru.lovity.bot.core.Paths;
+import ru.lovity.bot.model.*;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.*;
 

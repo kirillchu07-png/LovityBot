@@ -1,8 +1,7 @@
-package core;
-import Commands.Command;
-import Commands.StartCommand;
-import model.ConsoleWriter;
-import model.IncomingMessage;
+package ru.lovity.bot.core;
+import ru.lovity.bot.commands.Command;
+import ru.lovity.bot.model.ConsoleWriter;
+import ru.lovity.bot.model.IncomingMessage;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

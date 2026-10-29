@@ -1,14 +1,14 @@
-import Commands.Command;
-import Commands.StartCommand;
-import Commands.HelpCommand;
-import Commands.ViewCommand;
-import core.CommandDispatcher;
-import model.ConsoleReader;
-import model.ConsoleWriter;
-import model.IncomingMessage;
-import telegram.TelegramApiClient;
-import telegram.TelegramReader;
-import telegram.TelegramWriter;
+import ru.lovity.bot.commands.Command;
+import ru.lovity.bot.commands.StartCommand;
+import ru.lovity.bot.commands.HelpCommand;
+import ru.lovity.bot.commands.ViewCommand;
+import ru.lovity.bot.core.CommandDispatcher;
+import ru.lovity.bot.model.ConsoleReader;
+import ru.lovity.bot.model.ConsoleWriter;
+import ru.lovity.bot.model.IncomingMessage;
+import ru.lovity.bot.telegram.TelegramApiClient;
+import ru.lovity.bot.telegram.TelegramReader;
+import ru.lovity.bot.telegram.TelegramWriter;
 import java.util.List;
 class Main {
     public static void main(String[] args)

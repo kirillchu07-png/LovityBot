@@ -1,5 +1,5 @@
-package telegram;
-import model.ConsoleWriter;
+package ru.lovity.bot.telegram;
+import ru.lovity.bot.model.ConsoleWriter;
 public class TelegramWriter implements ConsoleWriter {
     private final TelegramApiClient api;
 

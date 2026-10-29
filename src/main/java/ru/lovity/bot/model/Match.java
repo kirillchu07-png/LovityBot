@@ -1,4 +1,4 @@
-package model;
+package ru.lovity.bot.model;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonElement;
 import java.util.Set;
