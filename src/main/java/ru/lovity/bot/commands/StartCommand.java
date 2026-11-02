@@ -1,6 +1,7 @@
 package ru.lovity.bot.commands;
 import ru.lovity.bot.core.Paths;
 import ru.lovity.bot.model.*;
+import ru.lovity.bot.service.ProfileFinder;
 
 import java.io.IOException;
 import java.util.*;
@@ -8,7 +9,7 @@ import java.util.*;
 public class StartCommand implements Command {
     private final Map<String, UserSession> sessions =
             new HashMap<>();
-
+    private final ProfileFinder profileFinder;
     private final List<String> questions =
             new ArrayList<>();
 
@@ -19,7 +20,7 @@ public class StartCommand implements Command {
             Paths.PATH_RESOURCES + "profils.json";
 
     public StartCommand() throws IOException {
-
+        profileFinder = new ProfileFinder(Paths.PATH_RESOURCES + "profils.json");
         String pathAnketa1 = Paths.PATH_RESOURCES + "anketa1.txt";
         String pathAnketa2 = Paths.PATH_RESOURCES + "anketa2.txt";
 
@@ -70,7 +71,10 @@ public class StartCommand implements Command {
     @Override
     public void execute(String userId, ConsoleWriter print)
             throws Exception {
-
+        if (profileFinder.getProfileById(userId) != null) {
+            print.output(userId, "У вас уже есть профиль!");
+            return;
+        }
         if (questions.isEmpty()) {
             print.output(userId, "Вопросы не найдены!");
             return;

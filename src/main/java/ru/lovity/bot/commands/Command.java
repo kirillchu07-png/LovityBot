@@ -10,7 +10,9 @@ public interface Command {
         return false;
     }
     default void handleAnswer(String userId,String text,ConsoleWriter print)throws Exception{
-
+    }
+    default boolean hasIncomingSession(String userId) {
+        return false;
     }
 
 }

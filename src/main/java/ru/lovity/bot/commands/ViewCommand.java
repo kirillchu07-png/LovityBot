@@ -7,6 +7,7 @@ import com.google.gson.stream.JsonReader;
 
 import ru.lovity.bot.core.Paths;
 import ru.lovity.bot.model.ConsoleWriter;
+import ru.lovity.bot.model.LikeManager;
 import ru.lovity.bot.model.Match;
 import ru.lovity.bot.model.ViewSession;
 import ru.lovity.bot.service.ProfileFinder;
@@ -27,6 +28,7 @@ public class ViewCommand implements Command {
 
     private final ProfileFinder profileFinder;
     private final Match match;
+    private final LikeManager likeManager;
 
     private final Map<String, ViewSession> sessions =
             new HashMap<>();
@@ -37,6 +39,7 @@ public class ViewCommand implements Command {
     public ViewCommand() throws IOException {
         profileFinder = new ProfileFinder(pathProfils);
         match = new Match();
+        likeManager = new LikeManager(profileFinder);
     }
 
     @Override
@@ -46,7 +49,7 @@ public class ViewCommand implements Command {
 
     @Override
     public boolean hasSession(String userId) {
-        return sessions.containsKey(userId);
+        return sessions.containsKey(userId)|| likeManager.hasSession(userId);
     }
 
     @Override
@@ -82,7 +85,6 @@ public class ViewCommand implements Command {
                 String otherId =
                         profile.get("id").getAsString();
 
-                // Не показываем собственную анкету
                 if (otherId.equals(userId)) {
                     continue;
                 }
@@ -129,13 +131,19 @@ public class ViewCommand implements Command {
 
         showCurrentProfile(userId, print);
     }
-
+    @Override
+    public boolean hasIncomingSession(String userId) {
+        return likeManager.hasSession(userId);
+    }
     @Override
     public void handleAnswer(String userId, String text,
                              ConsoleWriter print) throws Exception {
 
         ViewSession session = sessions.get(userId);
-
+        if (likeManager.hasSession(userId)) {
+            likeManager.handleAnswer(userId, text, print);
+            return;
+        }
         if (session == null) {
             print.output(userId, "Сначала отправь /profiles");
             return;
@@ -145,6 +153,7 @@ public class ViewCommand implements Command {
 
         if (answer.equals("stop")) {
             finish(userId, session, print);
+            //сообщение отправить
             return;
         }
 
@@ -164,6 +173,7 @@ public class ViewCommand implements Command {
 
         if (session.getIndex() >= session.getCount()) {
             finish(userId, session, print);
+            //сообщение отправить
             return;
         }
 
@@ -200,9 +210,8 @@ public class ViewCommand implements Command {
         sessions.remove(userId);
 
         print.output(userId,
-                "Просмотр завершён!\n"
-                        + "Понравившиеся ID: "
-                        + Arrays.toString(likedIds));
+                "Просмотр завершён!\n");
+        likeManager.sendLikes(userId, likedIds, print);
     }
 
     public String[] getResults(String userId) {

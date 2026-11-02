@@ -30,7 +30,23 @@ public class CommandDispatcher {
 
         String userId = message.userId();
         String text = message.text();
+        for (Command command : commands.values()) {
 
+            if (command.hasIncomingSession(userId)) {
+                command.handleAnswer(userId, text, print);
+                return;
+            }
+        }
+        if (!text.startsWith("/")) {
+
+            for (Command command : commands.values()) {
+
+                if (command.hasIncomingSession(userId)) {
+                    command.handleAnswer(userId, text, print);
+                    return;
+                }
+            }
+        }
         if (commands.containsKey(text)) {
 
             Command command = commands.get(text);
@@ -59,7 +75,7 @@ public class CommandDispatcher {
         } else {
 
             print.output(userId,
-                    "Отправь /start для заполнения анкеты");
+                    "Ниче не понял");
         }
     }
 
