@@ -1,8 +1,8 @@
-
 import ru.lovity.bot.commands.Command;
 import ru.lovity.bot.commands.StartCommand;
 import ru.lovity.bot.commands.HelpCommand;
 import ru.lovity.bot.commands.ViewCommand;
+import ru.lovity.bot.commands.DeleteCommand;
 
 import ru.lovity.bot.core.CommandDispatcher;
 
@@ -50,10 +50,14 @@ class Main {
         HelpCommand helpCommand =
                 new HelpCommand();
 
+        DeleteCommand deleteCommand =
+                new DeleteCommand();
+
         List<Command> commands = List.of(
                 startCommand,
                 helpCommand,
-                viewCommand
+                viewCommand,
+                deleteCommand
         );
 
         CommandDispatcher dispatcher =
